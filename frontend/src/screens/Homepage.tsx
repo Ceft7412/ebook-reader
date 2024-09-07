@@ -7,25 +7,7 @@ import Books from "../components/Books";
 export default function Home() {
   const [books, setBooks] = useState([]);
   console.log("books: ", books);
-
   const { isLoadedBooks } = useContext(BookContext);
-
-  useEffect(() => {
-    const fetchBooks = async () => {
-      try {
-        const response = await fetch("/api/books");
-        console.log("response: ", response);
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        setBooks(data.books);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchBooks();
-  }, []);
   return (
     <>
       {/* <Header /> */}
