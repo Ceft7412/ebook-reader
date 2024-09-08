@@ -2,6 +2,7 @@ import EPub from "epub";
 import path from "path";
 import fs from "fs/promises";
 import crypto from "crypto";
+import { URLSearchParams } from "url";
 
 /**
  * @description Get books data from file system
@@ -83,7 +84,36 @@ export const books = async (req, res) => {
     books,
   });
 };
-
 export const downloadBook = async (req, res) => {
-  res.status(200).json({ message: "Download a book" });
+  try {
+    const searchParams = new URLSearchParams(req.url.split("?")[1]); // Parse the query string
+    const filename = searchParams.get("filename"); // Get the filename from the query
+
+    if (!filename) {
+      return res.status(400).json({ error: "Filename is required" });
+    }
+
+    const filePath = path.join(process.cwd(), "backend/data/epub", filename);
+
+    // Ensure the file exists and is an EPUB
+    const fileExists = await fs
+      .access(filePath)
+      .then(() => true)
+      .catch(() => false);
+
+    if (!fileExists || path.extname(filename) !== ".epub") {
+      return res.status(404).json({ error: "File not found o  Pr invalid format" });
+    }
+
+    // Read the file
+    const fileBuffer = await fs.readFile(filePath);
+
+    // Return the file data
+    res.setHeader("Content-Type", "application/epub+zip");
+    res.setHeader("Content-Disposition", `attachment; filename="${filename}"`);
+    return res.end(fileBuffer);
+  } catch (error) {
+    console.error("Error downloading epub file:", error);
+    return res.status(500).json({ error: "Error downloading epub file" });
+  }
 };
