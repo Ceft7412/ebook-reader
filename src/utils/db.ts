@@ -70,7 +70,6 @@ export async function fetchStoreBooks() {
         request.result.map(async (book) => {
           const epub = Epub(book.book);
           const bookIndexedDBId = book.id;
-          console.log("bookIndexDBId: ", bookIndexedDBId);
           const coverUrl = await epub.coverUrl();
           if (coverUrl) {
             const response = await fetch(coverUrl);
