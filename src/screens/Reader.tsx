@@ -107,14 +107,11 @@ export default function Reader() {
         const currentPage = renditionRef.current?.book.locations.locationFromCfi(
           section.start.cfi
         );
-        console.log("currentPage: ", currentPage);
 
         const totalPages = renditionRef.current?.book.locations.length() ?? 0;
-        console.log("totalPages: ", totalPages);
         let percentage = 0;
         if (totalPages > 0) {
           percentage = Math.ceil((currentPage / totalPages) * 100);
-          console.log("percentage: ", percentage);
         }
         setReadingProgress(percentage);
       }

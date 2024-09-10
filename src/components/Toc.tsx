@@ -8,16 +8,13 @@ type Toc = {
   href?: string;
 };
 export default function Toc() {
-  console.log("open: ", open);
   const { bookToRead, setSectionDisplay, setTocDropdown, tocDropdown } =
     useContext(BookContext);
   const { backgroundTheme } = useContext(ReaderContext);
   const [toc, setToc] = React.useState<Toc[] | null>([]);
-  console.log("toc: ", toc);
   useEffect(() => {
     if (bookToRead) {
       const book = Epub(bookToRead.link ?? "");
-      console.log("book: ", book);
       book.loaded.navigation.then(() => {
         const tOc = book.navigation.toc;
         setToc(tOc);

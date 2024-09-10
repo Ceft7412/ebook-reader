@@ -12,7 +12,6 @@ export default function InfoBook({
   setIsBookInfoModalOpen,
   setIsModalOpen,
 }: Props) {
-  console.log("bookSelected: ", bookSelected);
   return (
     <div
       className="fixed top-0 left-0 right-0 bottom-0 bg-black/[0.2] z-50 flex items-center justify-center"

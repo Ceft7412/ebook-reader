@@ -15,7 +15,6 @@ export default function Books() {
   const [bookInfo, setBookInfo] = React.useState<number | null>(null);
   const navigate = useNavigate();
   const [isBookInfoModalOpen, setIsBookInfoModalOpen] = React.useState<boolean>(false);
-  console.log(": ", isBookInfoModalOpen);
   const handleClick = (title: string, id: string) => {
     navigate(`/reader/${slugify(title ?? "")}/${id ?? ""}`);
   };

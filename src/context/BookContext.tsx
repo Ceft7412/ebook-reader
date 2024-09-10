@@ -10,8 +10,6 @@ export default function BookProvider({ children }: Props) {
   const [booksEffect, setBooksEffect] = useState<Book[] | null>([]);
   const [bookToRead, setBookToRead] = useState<Book | null>(null);
   const [sectionDisplay, setSectionDisplay] = useState<string | "">("");
-  console.log("sectionDisplay: ", sectionDisplay);
-  console.log("bookToRead: ", bookToRead);
   const [bookReader, setBookReader] = useState(null);
   const [isLoadedBooks, setIsLoadedBooks] = useState(false);
   const [tocDropdown, setTocDropdown] = useState<boolean | null>(false);
@@ -30,7 +28,6 @@ export default function BookProvider({ children }: Props) {
     fetchBooks();
   }, []);
 
-  console.log("booksEffect: ", booksEffect);
   const handleReadingFile = (book: Book) => {
     setBookToRead(book);
   };
