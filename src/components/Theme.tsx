@@ -15,7 +15,6 @@ export default function Theme() {
   const [fontFamilyDropdown, setFontFamilyDropdown] = React.useState<boolean | null>(
     false
   );
-  const [fontSizeDropDown, setFontSizeDropDown] = React.useState<boolean | null>(false);
   const { themeDropdown, setThemeDropdown } = useContext(BookContext);
   const { backgroundTheme } = useContext(ReaderContext);
 
@@ -61,15 +60,13 @@ export default function Theme() {
             backgroundDropdown={backgroundDropdown}
             setBackgroundDropdown={setBackgroundDropdown}
             setFontFamilyDropdown={setFontFamilyDropdown}
-            setFontSizeDropDown={setFontSizeDropDown}
           />
           <FontFamily
             fontFamilyDropdown={fontFamilyDropdown}
             setFontFamilyDropdown={setFontFamilyDropdown}
             setBackgroundDropdown={setBackgroundDropdown}
-            setFontSizeDropDown={setFontSizeDropDown}
           />
-          <FontSize  />
+          <FontSize />
         </div>
       </div>
     </div>

@@ -6,13 +6,11 @@ interface Props {
   backgroundDropdown: boolean | null;
   setBackgroundDropdown: (backgroundDropdown: boolean) => void;
   setFontFamilyDropdown: (fontFamilyDropdown: boolean) => void;
-  setFontSizeDropDown: (fontSizeDropDown: boolean) => void;
 }
 export default function BackgroundTheme({
   backgroundDropdown,
   setBackgroundDropdown,
   setFontFamilyDropdown,
-  setFontSizeDropDown,
 }: Props) {
   const { backgroundTheme, setBackgroundTheme } = useContext(ReaderContext);
   return (
@@ -28,7 +26,6 @@ export default function BackgroundTheme({
           onClick={(e) => {
             e.stopPropagation();
             setFontFamilyDropdown(false);
-            setFontSizeDropDown(false);
             setBackgroundDropdown(!backgroundDropdown);
           }}
         >
@@ -53,7 +50,7 @@ export default function BackgroundTheme({
               className={`${
                 backgroundTheme === "light" ? "bg-neutral-200" : "hover:bg-black/[0.2]"
               } flex justify-between items-center p-2`}
-              onClick={(e) => setBackgroundTheme("light")}
+              onClick={() => setBackgroundTheme("light")}
             >
               <span>Light</span>
               <span className="w-3 h-3 bg-white border shadow rounded" />

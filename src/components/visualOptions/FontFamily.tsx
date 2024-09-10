@@ -7,13 +7,11 @@ interface Props {
   fontFamilyDropdown: boolean | null;
   setFontFamilyDropdown: (fontFamilyDropdown: boolean) => void;
   setBackgroundDropdown: (backgroundDropdown: boolean) => void;
-  setFontSizeDropDown: (fontSizeDropDown: boolean) => void;
 }
 export default function FontFamily({
   fontFamilyDropdown,
   setFontFamilyDropdown,
   setBackgroundDropdown,
-  setFontSizeDropDown,
 }: Props) {
   const { fontFamily, setFontFamily, backgroundTheme } = useContext(ReaderContext);
 
@@ -26,7 +24,6 @@ export default function FontFamily({
           onClick={(e) => {
             e.stopPropagation();
             setBackgroundDropdown(false);
-            setFontSizeDropDown(false);
             setFontFamilyDropdown(!fontFamilyDropdown);
           }}
         >
@@ -43,7 +40,7 @@ export default function FontFamily({
                 : "  bg-white border-neutral-100"
             } z-20 absolute -bottom-[208px] cursor-default left-0 right-0 flex flex-col rounded shadow border h-52 overflow-y-auto`}
           >
-            {fontFamilies.map((font, index) => (
+            {fontFamilies.map((font) => (
               <div
                 key={font}
                 className={`${
@@ -51,7 +48,7 @@ export default function FontFamily({
                     ? "bg-neutral-200 text-black"
                     : "hover:bg-black/[0.2]"
                 } flex justify-between items-center p-2 `}
-                onClick={(e) => {
+                onClick={() => {
                   setFontFamily(font);
                   setFontFamilyDropdown(false);
                 }}
