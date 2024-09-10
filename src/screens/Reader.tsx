@@ -1,23 +1,14 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { BookContext } from "../context/Context";
 import { Book } from "../constants/Book";
 import { slugify } from "../utils/slugify";
-import React, { useEffect, useContext, useRef, useState } from "react";
+import { useEffect, useContext, useRef, useState } from "react";
 import Epub from "epubjs";
 import { Next, Previous } from "../components/actions";
 import ReaderHeader from "../components/ReaderHeader";
-import localforage from "localforage";
 import Overlay from "../components/Overlay";
 import { ReaderContext } from "../context/ReaderContext";
 import FooterReader from "../components/FooterReader";
-import { arrayBuffer } from "stream/consumers";
-
-interface Props {
-  params: {
-    title: string;
-    id: string;
-  };
-}
 
 export type Rendition = {
   themes: any;
@@ -36,30 +27,17 @@ export type Rendition = {
   next: () => void;
 };
 
-const rendetionRefInitialValue = {
-  on: () => {},
-  display: () => {},
-  flow: () => {},
-  prev: () => {},
-  next: () => {},
-};
-
 export default function Reader() {
   const { title, id } = useParams();
   const readerContainerRef = useRef<HTMLDivElement>(null);
   const renditionRef = useRef<Rendition | null>(null);
-  console.log("renditionRef: ", renditionRef);
   const [isBookRendered, setIsBookRendered] = useState(false);
-  console.log("isBookRendered: ", isBookRendered);
   const [readingProgress, setReadingProgress] = useState(0);
-  console.log("readingProgress: ", readingProgress);
   const {
     booksEffect,
-    setBooksEffect,
     bookToRead,
     handleReadingFile,
     setBookToRead,
-    setBookReader,
     sectionDisplay,
     setTocDropdown,
   } = useContext(BookContext);

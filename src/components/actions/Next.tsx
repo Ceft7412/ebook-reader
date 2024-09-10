@@ -1,5 +1,3 @@
-import { Rendition } from "epubjs";
-import React from "react";
 import { FiChevronRight } from "react-icons/fi";
 
 import { MouseEventHandler } from "react"; // Import MouseEventHandler

@@ -1,19 +1,7 @@
 import { ReaderContext } from "../../context/ReaderContext";
-import React, { useContext } from "react";
+import { useContext } from "react";
 
-interface Props {
-  fontSizeDropDown: boolean | null;
-  setFontSizeDropDown: (fontSizeDropDown: boolean) => void;
-  setBackgroundDropdown: (backgroundDropdown: boolean) => void;
-  setFontFamilyDropdown: (fontFamilyDropdown: boolean) => void;
-}
-
-export default function FontSize({
-  fontSizeDropDown,
-  setFontSizeDropDown,
-  setBackgroundDropdown,
-  setFontFamilyDropdown,
-}: Props) {
+export default function FontSize() {
   const { fontSize, setFontSize } = useContext(ReaderContext);
   return (
     <div className="flex gap-3 justify-between items-center">

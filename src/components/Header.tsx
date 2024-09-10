@@ -10,7 +10,6 @@ export default function Header() {
   const { booksEffect, setBooksEffect } = useContext(BookContext);
 
   const [isInfoOpen, setIsInfoOpen] = React.useState<boolean>(false);
-  console.log("booksEffect: ", booksEffect);
   const handleFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
     try {
       if (event.target.files) {

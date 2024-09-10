@@ -1,13 +1,8 @@
-// import Books from "@/components/Books";
-// import Header from "@/components/Header";
-import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { BookContext } from "../context/Context";
 import Books from "../components/Books";
 import Header from "../components/Header";
 export default function Home() {
-  const [books, setBooks] = useState([]);
-  console.log("books: ", books);
   const { isLoadedBooks } = useContext(BookContext);
 
   if (!isLoadedBooks) {

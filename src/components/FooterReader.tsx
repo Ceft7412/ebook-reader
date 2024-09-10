@@ -1,5 +1,5 @@
 import { ReaderContext } from "../context/ReaderContext";
-import React, { useContext } from "react";
+import { useContext } from "react";
 
 interface Props {
   readingProgress: number;

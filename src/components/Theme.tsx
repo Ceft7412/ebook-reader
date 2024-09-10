@@ -2,7 +2,6 @@ import { BookContext } from "../context/Context";
 import React, { useContext, useEffect } from "react";
 import { IoMdClose } from "react-icons/io";
 
-import { TiDocumentText } from "react-icons/ti";
 import { ReaderContext } from "../context/ReaderContext";
 import ScreenLayout from "./visualOptions/ScreenLayout";
 import BackgroundTheme from "./visualOptions/BackgroundTheme";
@@ -18,14 +17,12 @@ export default function Theme() {
   );
   const [fontSizeDropDown, setFontSizeDropDown] = React.useState<boolean | null>(false);
   const { themeDropdown, setThemeDropdown } = useContext(BookContext);
-  const { layout, setLayout, backgroundTheme, setBackgroundTheme } =
-    useContext(ReaderContext);
+  const { backgroundTheme } = useContext(ReaderContext);
 
   // This useEffect hook will run when the themeDropdown state changes and close the dropdown
   useEffect(() => {
     !themeDropdown && setBackgroundDropdown(false);
   }, [themeDropdown]);
-  console.log("themeDropdown: ", themeDropdown);
 
   return (
     <div
@@ -72,12 +69,7 @@ export default function Theme() {
             setBackgroundDropdown={setBackgroundDropdown}
             setFontSizeDropDown={setFontSizeDropDown}
           />
-          <FontSize
-            fontSizeDropDown={fontSizeDropDown}
-            setFontSizeDropDown={setFontSizeDropDown}
-            setBackgroundDropdown={setBackgroundDropdown}
-            setFontFamilyDropdown={setFontFamilyDropdown}
-          />
+          <FontSize  />
         </div>
       </div>
     </div>

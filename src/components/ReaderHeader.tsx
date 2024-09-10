@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { MdToc } from "react-icons/md";
 import { RiFontSize } from "react-icons/ri";
 import { FaArrowLeft } from "react-icons/fa6";
@@ -15,14 +15,13 @@ interface Props {
 export default function ReaderHeader({ title, cover }: Props) {
   const {
     setBookToRead,
-    bookToRead,
+
     setTocDropdown,
     tocDropdown,
     setThemeDropdown,
     themeDropdown,
   } = useContext(BookContext);
   const { backgroundTheme } = useContext(ReaderContext);
-  console.log("backgroundTheme: ", backgroundTheme);
 
   const handleClick = () => {
     setBookToRead(null);

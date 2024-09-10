@@ -1,5 +1,5 @@
 import { ReaderContext } from "../../context/ReaderContext";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { IoChevronDownOutline } from "react-icons/io5";
 
 interface Props {

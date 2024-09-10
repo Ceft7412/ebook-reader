@@ -5,7 +5,7 @@ interface Props {
   children: React.ReactNode;
 }
 export default function Overlay({ children }: Props) {
-  const { setTocDropdown, tocDropdown, setThemeDropdown } = useContext(BookContext);
+  const { setTocDropdown, setThemeDropdown } = useContext(BookContext);
   return (
     <div
       onClick={() => {

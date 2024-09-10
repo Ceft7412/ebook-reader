@@ -1,4 +1,3 @@
-"use client";
 import React, { useContext } from "react";
 import { BookContext } from "../context/Context";
 import { Book } from "../constants/Book";
@@ -35,10 +34,8 @@ export default function Books() {
   // };
 
   const deleteInIndexedDB = async (id: number, stateId: number) => {
-    console.log("id: ", id);
-    console.log("Deleteid: ", id);
     deleteBookFromIndexedDB(id);
-    const updatedBooksEffect = booksEffect?.filter((book, index) => index !== stateId);
+    const updatedBooksEffect = booksEffect?.filter((_, index) => index !== stateId);
     setBooksEffect(updatedBooksEffect ?? null);
   };
 

@@ -1,5 +1,5 @@
 import { ReaderContext } from "../../context/ReaderContext";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { IoChevronDownOutline } from "react-icons/io5";
 import { FONT_FAMILIES as fontFamilies } from "../../constants/fonts";
 
@@ -15,8 +15,7 @@ export default function FontFamily({
   setBackgroundDropdown,
   setFontSizeDropDown,
 }: Props) {
-  const { fontFamily, setFontFamily, backgroundTheme, setBackgroundTheme } =
-    useContext(ReaderContext);
+  const { fontFamily, setFontFamily, backgroundTheme } = useContext(ReaderContext);
 
   return (
     <div className="flex justify-between items-center gap-3">

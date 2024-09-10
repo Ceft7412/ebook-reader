@@ -1,5 +1,4 @@
 import { BookContext } from "../context/Context";
-import { Book } from "../constants/Book";
 import { ReaderContext } from "../context/ReaderContext";
 import Epub from "epubjs";
 import React, { useContext, useEffect } from "react";
@@ -19,7 +18,7 @@ export default function Toc() {
     if (bookToRead) {
       const book = Epub(bookToRead.link ?? "");
       console.log("book: ", book);
-      book.loaded.navigation.then((toc) => {
+      book.loaded.navigation.then(() => {
         const tOc = book.navigation.toc;
         setToc(tOc);
       });

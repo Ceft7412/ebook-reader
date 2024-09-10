@@ -1,5 +1,5 @@
 import { ReaderContext } from "../../context/ReaderContext";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { VscBook } from "react-icons/vsc";
 import { PiNotebook } from "react-icons/pi";
 

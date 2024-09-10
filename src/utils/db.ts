@@ -2,11 +2,11 @@ import Epub from "epubjs";
 import { Book } from "../constants/Book";
 import CryptoJS from "crypto-js";
 // Connection to database
-export function openDatabase(version = 2): Promise<IDBDatabase> {
+export function openDatabase(): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open("booksDatabase", 1);
 
-    request.onupgradeneeded = (event) => {
+    request.onupgradeneeded = () => {
       const db = request.result;
       if (!db.objectStoreNames.contains("books")) {
         db.createObjectStore("books", { keyPath: "id", autoIncrement: true });
@@ -25,7 +25,7 @@ export function openDatabase(version = 2): Promise<IDBDatabase> {
 
 // Add book to indexedDB
 export async function addBookToIndexedDB(book: File): Promise<IDBValidKey> {
-  const db = await openDatabase(2);
+  const db = await openDatabase();
   const transaction = db.transaction(["books"], "readwrite");
   const objectStore = transaction.objectStore("books");
   const request = objectStore.add({ book });
@@ -41,13 +41,13 @@ export async function addBookToIndexedDB(book: File): Promise<IDBValidKey> {
 }
 
 export async function deleteBookFromIndexedDB(bookId: number): Promise<void> {
-  const db = await openDatabase(2);
+  const db = await openDatabase();
   const transaction = db.transaction(["books"], "readwrite");
   const objectStore = transaction.objectStore("books");
   objectStore.delete(bookId);
   return new Promise((resolve, reject) => {
     transaction.oncomplete = function () {
-      resolve();    
+      resolve();
     };
 
     transaction.onerror = function (event: Event) {
@@ -59,7 +59,7 @@ export async function deleteBookFromIndexedDB(bookId: number): Promise<void> {
 
 // Fetching all the stored books in the indexedDB
 export async function fetchStoreBooks() {
-  const db = await openDatabase(2);
+  const db = await openDatabase();
   const transaction = db.transaction(["books"], "readonly");
   const objectStore = transaction.objectStore("books");
   const request = objectStore.getAll();
